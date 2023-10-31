@@ -32,17 +32,3 @@ doi = {10.1137/15M1026390},
 URL = {https://doi.org/10.1137/15M1026390},
 }
 
-USER-SELM Package: Fluctuating Hydrodynamics 
-
-@article{atzberger_selm_shear_2013,
-title={Incorporating shear into stochastic Eulerian-Lagrangian methods
-for rheological studies of complex fluids and soft materials },
-author={Paul J. Atzberger},
-journal={Physica D: Nonlinear Phenomena},
-year={2013},
-pages={57 - 70},
-volume={265},
-doi={http://doi.org/10.1016/j.physd.2013.09.002},
-issn={0167-2789},
-}
-
