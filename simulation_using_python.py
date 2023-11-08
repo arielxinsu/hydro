@@ -91,7 +91,6 @@ atz_util.print_version_info(L);
 src = script_dir + '/' + "Model1";
 dst = base_dir + '/';
 atz_util.copytree2(src,dst,symlinks=False,ignore=None);
-
 print_log("Model files being copied:\n" + "src = " + str(src) + "\n" + "dst = " + str(dst));
 
 
