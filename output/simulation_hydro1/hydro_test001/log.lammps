@@ -1,1 +1,130 @@
 LAMMPS (2 Aug 2023)
+region mybox block -3.60e+01 3.60e+01 -3.60e+01 3.60e+01 -3.60e+01 3.60e+01
+boundary p p p
+create_box 1 mybox
+Created orthogonal box = (-36 -36 -36) to (36 36 36)
+  1 by 1 by 1 MPI processor grid
+lattice sq 0.01
+ERROR: Lattice style incompatible with simulation dimension (../lattice.cpp:72)
+Last command: lattice sq 0.01
+lattice fcc 1.0
+Lattice spacing in x,y,z = 1.5874011 1.5874011 1.5874011
+########Another way to setup obstacles but 
+# 2 obstacles
+region void1 sphere 10 4 0 3
+delete_atoms region void1
+Deleted 0 atoms, new total = 0
+region void2 sphere 20 7 0 3
+delete_atoms region void2
+Deleted 0 atoms, new total = 0
+#lattice sq 0.01
+#region box block 0 30 0 30 -0.5 0.5
+#create_box 2 box
+create_atoms 2 mybox
+ERROR: Unknown create_atoms command option mybox (../create_atoms.cpp:137)
+Last command: create_atoms 2 mybox
+region void1 delete
+region void2 delete
+clear
+region mybox block -3.60e+01 3.60e+01 -3.60e+01 3.60e+01 -3.60e+01 3.60e+01
+boundary p p p
+create_box 1 mybox
+Created orthogonal box = (-36 -36 -36) to (36 36 36)
+  1 by 1 by 1 MPI processor grid
+lattice fcc 1.0
+Lattice spacing in x,y,z = 1.5874011 1.5874011 1.5874011
+########Another way to setup obstacles but 
+# 2 obstacles
+region void1 sphere 10 4 5 3
+delete_atoms region void1
+Deleted 0 atoms, new total = 0
+region void2 sphere 20 7 5 3
+delete_atoms region void2
+Deleted 0 atoms, new total = 0
+#lattice sq 0.01
+#region box block 0 30 0 30 -0.5 0.5
+#create_box 2 box
+create_atoms 1 mybox
+ERROR: Unknown create_atoms command option mybox (../create_atoms.cpp:137)
+Last command: create_atoms 1 mybox
+region void2 delete
+region void1 delete
+########Another way to setup obstacles but 
+# 2 obstacles
+region void1 sphere 10 4 5 3
+delete_atoms region void1
+Deleted 0 atoms, new total = 0
+region void2 sphere 20 7 5 3
+delete_atoms region void2
+Deleted 0 atoms, new total = 0
+#lattice sq 0.01
+#region box block 0 30 0 30 -0.5 0.5
+#create_box 2 box
+create_atoms 1 box
+Created 376785 atoms
+  using lattice units in orthogonal box = (-36 -36 -36) to (36 36 36)
+  create_atoms CPU = 0.076 seconds
+set group all type/fraction 2 0.96 23984
+Setting atom values ...
+ERROR: Invalid type value 2 in set type/fraction command (../set.cpp:112)
+Last command: set group all type/fraction 2 0.96 23984
+region void1 delete
+region void2 delete
+########Another way to setup obstacles but 
+# 2 obstacles
+region void1 sphere 10 4 5 3
+delete_atoms region void1
+Deleted 457 atoms, new total = 376328
+region void2 sphere 20 7 5 3
+delete_atoms region void2
+Deleted 455 atoms, new total = 375873
+#lattice sq 0.01
+#region box block 0 30 0 30 -0.5 0.5
+#create_box 2 box
+create_atoms 1 box
+Created 376785 atoms
+  using lattice units in orthogonal box = (-36 -36 -36) to (36 36 36)
+  create_atoms CPU = 0.076 seconds
+set group all type/fraction 1 0.96 23984
+Setting atom values ...
+  722421 settings made for type/fraction
+set type 1 mass 9
+Setting atom values ...
+ERROR: Cannot set attribute mass for atom style atomic (../set.cpp:217)
+Last command: set type 1 mass 9
+region void2 delete
+region void1 delete
+########Another way to setup obstacles but 
+# 2 obstacles
+region void1 sphere 10 4 5 3
+delete_atoms region void1
+Deleted 457 atoms, new total = 752201
+region void2 sphere 20 7 5 3
+delete_atoms region void2
+Deleted 455 atoms, new total = 751746
+#lattice sq 0.01
+#region box block 0 30 0 30 -0.5 0.5
+#create_box 2 box
+create_atoms 1 box
+Created 376785 atoms
+  using lattice units in orthogonal box = (-36 -36 -36) to (36 36 36)
+  create_atoms CPU = 0.097 seconds
+set group all type/fraction 1 0.96 23984
+Setting atom values ...
+  1083193 settings made for type/fraction
+set type 1 mass 9
+Setting atom values ...
+ERROR: Cannot set attribute mass for atom style atomic (../set.cpp:217)
+Last command: set type 1 mass 9
+region void1 delete
+region void2 delete
+########Another way to setup obstacles but 
+# 2 obstacles
+region void1 sphere 10 4 5 3
+delete_atoms region void1
+Deleted 457 atoms, new total = 1128074
+region void2 sphere 20 7 5 3
+delete_atoms region void2
+Deleted 455 atoms, new total = 1127619
+#lattice sq 0.01
+#region box block 0 30 0 30 -
