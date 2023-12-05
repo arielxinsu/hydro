@@ -1,18 +1,12 @@
 from selm_lammps.lammps import IPyLammps
 For running LAMMPS changing the current working directory to:
 /home/xsu2/Downloads/hydro/output/simulation_hydro1/hydro_test001
-No such comm target registered: jupyter.widget.control
-No such comm: be22aad4-cf46-4d76-b929-748f13ec1e80
 Model files being copied:
 src = /home/xsu2/Downloads/hydro/Model1
 dst = /home/xsu2/Downloads/hydro/output/simulation_hydro1/hydro_test001/
 Copying notebook to archive:
 src = /home/xsu2/Downloads/hydro/simulation_hydro1.ipynb
 dst = /home/xsu2/Downloads/hydro/output/simulation_hydro1/hydro_test001/archive__simulation_hydro1.ipynb
-atom_name = structure_pts
-num_pts = 2
-atom_name = structure_pts
-num_pts = 2
 atom_name = structure_pts
 num_pts = 2
 Writing model data .pickle
@@ -81,9 +75,7 @@ neighbor ${neighborSkinDist} bin                    # first number gives a dista
 neigh_modify every 1
 atom_modify sort 0 ${neighborSkinDist}           # setup sort data explicitly since no interactions to set this data. 
 
-##(New) fix spring 
-#fix 1 all spring tehether 50.0 0.0 0.0 0.0 0.0
-#fix 3 flow spring tehether 50.0 0.0 0.0 0.0 0.0
+
 
 # == Setup the SELM integrator
 fix 1 all selm Main.SELM_params
@@ -94,9 +86,6 @@ fix 1 all selm Main.SELM_params
 
 
 
-Sending commands to LAMMPs
-
-info all out
 Sending commands to LAMMPs
 
 # 2 obstacles
@@ -131,8 +120,61 @@ group flow subtract all boundary
 
 Sending commands to LAMMPs
 
-fix 1 flow indent 100 sphere 10 4 0 4
-Sending commands to LAMMPs
-
 fix 2 flow indent 100 sphere 10 4 0 4
 fix 3 flow indent 100 sphere 20 7 0 4
+Sending commands to LAMMPs
+
+##(New) fix spring 
+fix 4 all spring tehether 50.0 0.0 0.0 0.0 0.0
+Sending commands to LAMMPs
+
+##(New) fix spring 
+fix 4 all spring tehether 50.0 0.0 0.0 0.0 5.0
+Sending commands to LAMMPs
+
+##(New) fix spring 
+fix 4 all spring couple 50.0 0.0 0.0 0.0 5.0
+Sending commands to LAMMPs
+
+##(New) fix spring 
+fix 4 flow spring couple 50.0 0.0 0.0 0.0 5.0
+Sending commands to LAMMPs
+
+##(New) fix spring 
+fix 4 all spring couple 50.0 0.0 0.0 0.0 5.0
+Sending commands to LAMMPs
+
+##(New) fix spring 
+fix 4 all spring couple 50.0 0.0 0.0 0.0 5.0
+Sending commands to LAMMPs
+
+##(New) fix spring 
+fix 6 all spring couple 50.0 0.0 0.0 0.0 5.0
+Sending commands to LAMMPs
+
+##(New) fix spring 
+fix 4 all spring couple 50.0 200.0 0.0 0.0 5.0
+Sending commands to LAMMPs
+
+##(New) fix spring 
+fix 4 all spring tehether 50.0 200.0 0.0 0.0 5.0
+Sending commands to LAMMPs
+
+##(New) fix spring 
+fix 4 all spring tether 50.0 200.0 0.0 0.0 5.0
+
+Sending commands to LAMMPs
+
+# == Setup output data write to disk
+dump        dmp_vtk all vtk ${dumpfreq} ./vtk/Particles_*.vtp id type vx fx
+dump_modify dmp_vtk pad 8 # ensures filenames file_000000.data
+
+# == simulation time-stepping
+timestep 6
+
+# == Run the simulation
+run      100 upto
+
+# == Write restart data
+write_restart ${baseFilename}.LAMMPS_restart_data
+Done

@@ -1,6 +1,6 @@
 
 Info-Info-Info-Info-Info-Info-Info-Info-Info-Info-Info
-Printed on Sun Dec  3 18:28:46 2023
+Printed on Tue Dec  5 10:19:59 2023
 
 
 LAMMPS version: 29 Oct 2020 / 20201029
@@ -31,7 +31,7 @@ MOLECULE USER-MISC USER-VTK
 Memory allocation information (MPI rank 0):
 
 Total dynamically allocated memory: 0.02355 Mbyte
-Current reserved memory pool size: 22.18 Mbyte
+Current reserved memory pool size: 22.30 Mbyte
 Maximum resident set size: 135.3 Mbyte
 
 Communication information:
@@ -67,7 +67,7 @@ Fix information:
 Variable information:
 
 Total time information (MPI rank 0):
-  CPU time:    0:00:02
+  CPU time:    0:00:01
  Wall time:    0:00:00
 
 Styles information:

@@ -46,7 +46,7 @@ Finding 1-2 1-3 1-4 neighbors ...
      0 = max # of 1-4 neighbors
      1 = max # of special neighbors
   special bonds CPU = 0.000 seconds
-  read_data CPU = 0.002 seconds
+  read_data CPU = 0.067 seconds
 velocity all zero linear                   # initialize all atomic velocities initially to zero
 # == Interactions 
 pair_style none
@@ -60,16 +60,11 @@ neighbor 1 bin
 neigh_modify every 1
 atom_modify sort 0 ${neighborSkinDist}           # setup sort data explicitly since no interactions to set this data. 
 atom_modify sort 0 1           
-##(New) fix spring 
-#fix 1 all spring tehether 50.0 0.0 0.0 0.0 0.0
-#fix 3 flow spring tehether 50.0 0.0 0.0 0.0 0.0
 # == Setup the SELM integrator
 fix 1 all selm Main.SELM_params
 # note langevin just computes forces, nve integrates the motions
 #fix 1 all langevin 298.15 298.15 0.00001 48279
 #fix 2 all nve
-info all out
-WARNING: Ignoring unknown or incorrect info command flag (../info.cpp:257)
 # 2 obstacles
 region		void1 sphere 10 4 0 3
 delete_atoms	region void1
@@ -92,4 +87,101 @@ group lower_z region 3
 region 4 block INF INF 200 INF  INF INF
 group upper_y region 4
 0 atoms in group upper_y
-re
+region 5 block 200 INF INF INF  INF INF
+group upper_x region 5
+0 atoms in group upper_x
+region 6 block INF  INF INF  INF 200 INF
+group upper_z region 6
+0 atoms in group upper_z
+# define groups
+group boundary union lower_y lower_x lower_z upper_y upper_x upper_z
+0 atoms in group boundary
+group flow subtract all boundary
+2 atoms in group flow
+fix 2 flow indent 100 sphere 10 4 0 4
+fix 3 flow indent 100 sphere 20 7 0 4
+##(New) fix spring 
+fix 4 all spring tehether 50.0 0.0 0.0 0.0 0.0
+ERROR: Illegal fix spring command (../fix_spring.cpp:93)
+Last command: fix 4 all spring tehether 50.0 0.0 0.0 0.0 0.0
+##(New) fix spring 
+fix 4 all spring tehether 50.0 0.0 0.0 0.0 5.0
+ERROR: Illegal fix spring command (../fix_spring.cpp:93)
+Last command: fix 4 all spring tehether 50.0 0.0 0.0 0.0 5.0
+##(New) fix spring 
+fix 4 all spring couple 50.0 0.0 0.0 0.0 5.0
+ERROR: Illegal fix spring command (../fix_spring.cpp:69)
+Last command: fix 4 all spring couple 50.0 0.0 0.0 0.0 5.0
+##(New) fix spring 
+fix 4 flow spring couple 50.0 0.0 0.0 0.0 5.0
+ERROR: Illegal fix spring command (../fix_spring.cpp:69)
+Last command: fix 4 flow spring couple 50.0 0.0 0.0 0.0 5.0
+##(New) fix spring 
+fix 4 all spring couple 50.0 0.0 0.0 0.0 5.0
+ERROR: Illegal fix spring command (../fix_spring.cpp:69)
+Last command: fix 4 all spring couple 50.0 0.0 0.0 0.0 5.0
+##(New) fix spring 
+fix 4 all spring couple 50.0 0.0 0.0 0.0 5.0
+ERROR: Illegal fix spring command (../fix_spring.cpp:69)
+Last command: fix 4 all spring couple 50.0 0.0 0.0 0.0 5.0
+##(New) fix spring 
+fix 6 all spring couple 50.0 0.0 0.0 0.0 5.0
+ERROR: Illegal fix spring command (../fix_spring.cpp:69)
+Last command: fix 6 all spring couple 50.0 0.0 0.0 0.0 5.0
+##(New) fix spring 
+fix 4 all spring couple 50.0 200.0 0.0 0.0 5.0
+ERROR: Illegal fix spring command (../fix_spring.cpp:69)
+Last command: fix 4 all spring couple 50.0 200.0 0.0 0.0 5.0
+##(New) fix spring 
+fix 4 all spring tehether 50.0 200.0 0.0 0.0 5.0
+ERROR: Illegal fix spring command (../fix_spring.cpp:93)
+Last command: fix 4 all spring tehether 50.0 200.0 0.0 0.0 5.0
+##(New) fix spring 
+fix 4 all spring tether 50.0 200.0 0.0 0.0 5.0
+# == Setup output data write to disk
+dump        dmp_vtk all vtk ${dumpfreq} ./vtk/Particles_*.vtp id type vx fx
+dump        dmp_vtk all vtk 1 ./vtk/Particles_*.vtp id type vx fx
+dump_modify dmp_vtk pad 8 # ensures filenames file_000000.data
+# == simulation time-stepping
+timestep 6
+# == Run the simulation
+run      100 upto
+Neighbor list info ...
+  update every 1 steps, delay 10 steps, check yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 0
+  ghost atom cutoff = 202
+  binsize = 404, bins = 1 1 1
+  0 neighbor lists, perpetual/occasional/extra = 0 0 0
+Per MPI rank memory allocation (min/avg/max) = 3.941 | 3.941 | 3.941 Mbytes
+Step Temp E_pair E_mol TotEng Press Volume 
+       0            0            0            0            0            0     65939264 
+     100 2.8686891e-08            0            0 5.9409851e-10 6.0065225e-18     65939264 
+Loop time of 43.9183 on 1 procs for 100 steps with 2 atoms
+
+Performance: 1180374.521 ns/day, 0.000 hours/ns, 2.277 timesteps/s
+96.2% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 2.408e-05  | 2.408e-05  | 2.408e-05  |   0.0 |  0.00
+Neigh   | 4.0531e-06 | 4.0531e-06 | 4.0531e-06 |   0.0 |  0.00
+Comm    | 0.00074267 | 0.00074267 | 0.00074267 |   0.0 |  0.00
+Output  | 0.14472    | 0.14472    | 0.14472    |   0.0 |  0.33
+Modify  | 43.772     | 43.772     | 43.772     |   0.0 | 99.67
+Other   |            | 0.0007246  |            |       |  0.00
+
+Nlocal:        2.00000 ave           2 max           2 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:        14.0000 ave          14 max          14 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:        0.00000 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0.0000000
+Ave special neighs/atom = 0.0000000
+Neighbor list builds = 3
+Dangerous builds = 3
