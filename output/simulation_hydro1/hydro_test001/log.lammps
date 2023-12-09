@@ -37,7 +37,7 @@ Reading data file ...
   triclinic box = (-202.00000 -202.00000 -202.00000) to (202.00000 202.00000 202.00000) with tilt (0.0000000 0.0000000 0.0000000)
   1 by 1 by 1 MPI processor grid
   reading atoms ...
-  2 atoms
+  2664 atoms
 Finding 1-2 1-3 1-4 neighbors ...
   special bond factors lj:    0.0      0.0      0.0     
   special bond factors coul:  0.0      0.0      0.0     
@@ -45,8 +45,8 @@ Finding 1-2 1-3 1-4 neighbors ...
      0 = max # of 1-3 neighbors
      0 = max # of 1-4 neighbors
      1 = max # of special neighbors
-  special bonds CPU = 0.000 seconds
-  read_data CPU = 0.067 seconds
+  special bonds CPU = 0.005 seconds
+  read_data CPU = 0.016 seconds
 velocity all zero linear                   # initialize all atomic velocities initially to zero
 # == Interactions 
 pair_style none
@@ -69,11 +69,11 @@ fix 1 all selm Main.SELM_params
 region		void1 sphere 10 4 0 3
 delete_atoms	region void1
 WARNING: Ignoring 'compress yes' for molecular system (../delete_atoms.cpp:125)
-Deleted 0 atoms, new total = 2
+Deleted 0 atoms, new total = 2664
 region		void2 sphere 20 7 0 3
 delete_atoms	region void2
 WARNING: Ignoring 'compress yes' for molecular system (../delete_atoms.cpp:125)
-Deleted 0 atoms, new total = 2
+Deleted 0 atoms, new total = 2664
 # define groups
 region 1 block INF INF INF -200 INF INF
 group lower_y region 1
@@ -97,47 +97,39 @@ group upper_z region 6
 group boundary union lower_y lower_x lower_z upper_y upper_x upper_z
 0 atoms in group boundary
 group flow subtract all boundary
-2 atoms in group flow
+2664 atoms in group flow
 fix 2 flow indent 100 sphere 10 4 0 4
 fix 3 flow indent 100 sphere 20 7 0 4
 ##(New) fix spring 
-fix 4 all spring tehether 50.0 0.0 0.0 0.0 0.0
-ERROR: Illegal fix spring command (../fix_spring.cpp:93)
-Last command: fix 4 all spring tehether 50.0 0.0 0.0 0.0 0.0
-##(New) fix spring 
-fix 4 all spring tehether 50.0 0.0 0.0 0.0 5.0
-ERROR: Illegal fix spring command (../fix_spring.cpp:93)
-Last command: fix 4 all spring tehether 50.0 0.0 0.0 0.0 5.0
-##(New) fix spring 
-fix 4 all spring couple 50.0 0.0 0.0 0.0 5.0
-ERROR: Illegal fix spring command (../fix_spring.cpp:69)
-Last command: fix 4 all spring couple 50.0 0.0 0.0 0.0 5.0
-##(New) fix spring 
-fix 4 flow spring couple 50.0 0.0 0.0 0.0 5.0
-ERROR: Illegal fix spring command (../fix_spring.cpp:69)
-Last command: fix 4 flow spring couple 50.0 0.0 0.0 0.0 5.0
-##(New) fix spring 
-fix 4 all spring couple 50.0 0.0 0.0 0.0 5.0
-ERROR: Illegal fix spring command (../fix_spring.cpp:69)
-Last command: fix 4 all spring couple 50.0 0.0 0.0 0.0 5.0
-##(New) fix spring 
-fix 4 all spring couple 50.0 0.0 0.0 0.0 5.0
-ERROR: Illegal fix spring command (../fix_spring.cpp:69)
-Last command: fix 4 all spring couple 50.0 0.0 0.0 0.0 5.0
-##(New) fix spring 
-fix 6 all spring couple 50.0 0.0 0.0 0.0 5.0
-ERROR: Illegal fix spring command (../fix_spring.cpp:69)
-Last command: fix 6 all spring couple 50.0 0.0 0.0 0.0 5.0
-##(New) fix spring 
-fix 4 all spring couple 50.0 200.0 0.0 0.0 5.0
-ERROR: Illegal fix spring command (../fix_spring.cpp:69)
-Last command: fix 4 all spring couple 50.0 200.0 0.0 0.0 5.0
-##(New) fix spring 
-fix 4 all spring tehether 50.0 200.0 0.0 0.0 5.0
-ERROR: Illegal fix spring command (../fix_spring.cpp:93)
-Last command: fix 4 all spring tehether 50.0 200.0 0.0 0.0 5.0
-##(New) fix spring 
 fix 4 all spring tether 50.0 200.0 0.0 0.0 5.0
+info all out
+WARNING: Ignoring unknown or incorrect info command flag (../info.cpp:257)
+info all out
+WARNING: Ignoring unknown or incorrect info command flag (../info.cpp:257)
+info all out
+WARNING: Ignoring unknown or incorrect info command flag (../info.cpp:257)
+info types atom
+WARNING: Ignoring unknown or incorrect info command flag (../info.cpp:257)
+WARNING: Ignoring unknown or incorrect info command flag (../info.cpp:257)
+info types atom out
+WARNING: Ignoring unknown or incorrect info command flag (../info.cpp:257)
+WARNING: Ignoring unknown or incorrect info command flag (../info.cpp:257)
+WARNING: Ignoring unknown or incorrect info command flag (../info.cpp:257)
+info styles atom out
+WARNING: Ignoring unknown or incorrect info command flag (../info.cpp:257)
+info styles atom 
+info styles all
+info all out
+WARNING: Ignoring unknown or incorrect info command flag (../info.cpp:257)
+group forcing type 3
+1331 atoms in group forcing
+info all out
+WARNING: Ignoring unknown or incorrect info command flag (../info.cpp:257)
+group forcing type 3
+1331 atoms in group forcing
+fix 5 forcing setforce 3.0 0.0 0.0
+info all out
+WARNING: Ignoring unknown or incorrect info command flag (../info.cpp:257)
 # == Setup output data write to disk
 dump        dmp_vtk all vtk ${dumpfreq} ./vtk/Particles_*.vtp id type vx fx
 dump        dmp_vtk all vtk 1 ./vtk/Particles_*.vtp id type vx fx
@@ -153,29 +145,29 @@ Neighbor list info ...
   ghost atom cutoff = 202
   binsize = 404, bins = 1 1 1
   0 neighbor lists, perpetual/occasional/extra = 0 0 0
-Per MPI rank memory allocation (min/avg/max) = 3.941 | 3.941 | 3.941 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 8.113 | 8.113 | 8.113 Mbytes
 Step Temp E_pair E_mol TotEng Press Volume 
        0            0            0            0            0            0     65939264 
-     100 2.8686891e-08            0            0 5.9409851e-10 6.0065225e-18     65939264 
-Loop time of 43.9183 on 1 procs for 100 steps with 2 atoms
+     100 0.0010598437            0            0  0.058450466 5.9095257e-10     65939264 
+Loop time of 61.2592 on 1 procs for 100 steps with 2664 atoms
 
-Performance: 1180374.521 ns/day, 0.000 hours/ns, 2.277 timesteps/s
-96.2% CPU use with 1 MPI tasks x no OpenMP threads
+Performance: 846240.915 ns/day, 0.000 hours/ns, 1.632 timesteps/s
+92.8% CPU use with 1 MPI tasks x no OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
 Pair    | 0          | 0          | 0          |   0.0 |  0.00
-Bond    | 2.408e-05  | 2.408e-05  | 2.408e-05  |   0.0 |  0.00
-Neigh   | 4.0531e-06 | 4.0531e-06 | 4.0531e-06 |   0.0 |  0.00
-Comm    | 0.00074267 | 0.00074267 | 0.00074267 |   0.0 |  0.00
-Output  | 0.14472    | 0.14472    | 0.14472    |   0.0 |  0.33
-Modify  | 43.772     | 43.772     | 43.772     |   0.0 | 99.67
-Other   |            | 0.0007246  |            |       |  0.00
+Bond    | 4.7445e-05 | 4.7445e-05 | 4.7445e-05 |   0.0 |  0.00
+Neigh   | 0.00035167 | 0.00035167 | 0.00035167 |   0.0 |  0.00
+Comm    | 0.14878    | 0.14878    | 0.14878    |   0.0 |  0.24
+Output  | 2.1558     | 2.1558     | 2.1558     |   0.0 |  3.52
+Modify  | 58.946     | 58.946     | 58.946     |   0.0 | 96.22
+Other   |            | 0.008698   |            |       |  0.01
 
-Nlocal:        2.00000 ave           2 max           2 min
+Nlocal:        2664.00 ave        2664 max        2664 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Nghost:        14.0000 ave          14 max          14 min
+Nghost:        18648.0 ave       18648 max       18648 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Neighs:        0.00000 ave           0 max           0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -183,5 +175,5 @@ Histogram: 1 0 0 0 0 0 0 0 0 0
 Total # of neighbors = 0
 Ave neighs/atom = 0.0000000
 Ave special neighs/atom = 0.0000000
-Neighbor list builds = 3
-Dangerous builds = 3
+Neighbor list builds = 10
+Dangerous builds = 10
