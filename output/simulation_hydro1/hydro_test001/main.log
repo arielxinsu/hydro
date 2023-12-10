@@ -60,7 +60,6 @@ angle_style none
 
 # indicates type of boundary conditions in each direction (p = periodic) 
 boundary p p p 
-
 read_data ${baseFilename}.LAMMPS_read_data # file of atomic coordinates and topology
 velocity all zero linear                   # initialize all atomic velocities initially to zero
 
@@ -94,9 +93,9 @@ Sending commands to LAMMPs
 
 # 2 obstacles
 
-region		void1 sphere 10 4 0 3
+region		void1 sphere 10 4 0 70
 delete_atoms	region void1
-region		void2 sphere 20 7 0 3
+region		void2 sphere 120 7 0 70
 delete_atoms	region void2
 Sending commands to LAMMPs
 
@@ -129,47 +128,14 @@ fix 3 flow indent 100 sphere 20 7 0 4
 Sending commands to LAMMPs
 
 ##(New) fix spring 
-fix 4 all spring tether 50.0 200.0 0.0 0.0 5.0
+fix 4 all spring tether 5.0 0.0 0.0 0.0 5.0
 
-Sending commands to LAMMPs
-
-info all out
-Sending commands to LAMMPs
-
-info all out
-Sending commands to LAMMPs
-
-info all out
-Sending commands to LAMMPs
-
-info types atom
-Sending commands to LAMMPs
-
-info types atom out
-Sending commands to LAMMPs
-
-info styles atom out
-Sending commands to LAMMPs
-
-info styles atom 
-Sending commands to LAMMPs
-
-info styles all
-Sending commands to LAMMPs
-
-info all out
 Sending commands to LAMMPs
 
 group forcing type 3
 Sending commands to LAMMPs
 
-info all out
-Sending commands to LAMMPs
-
-group forcing type 3
-Sending commands to LAMMPs
-
-fix 5 forcing setforce 3.0 0.0 0.0
+fix 5 forcing setforce 300.0 0.0 0.0
 Sending commands to LAMMPs
 
 info all out
@@ -184,7 +150,4 @@ timestep 6
 
 # == Run the simulation
 run      100 upto
-
-# == Write restart data
-write_restart ${baseFilename}.LAMMPS_restart_data
 Done
