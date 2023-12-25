@@ -151,3 +151,5 @@ timestep 6
 # == Run the simulation
 run      100 upto
 Done
+No such comm target registered: jupyter.widget.control
+No such comm: 92fc2d84-d8b5-4890-92ab-7a2a96dfa800
