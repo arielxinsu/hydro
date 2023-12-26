@@ -10,7 +10,7 @@ L=IPyLammps();
 import numpy as np
 
 
-# In[2]:
+# In[ ]:
 
 
 s="""
@@ -30,7 +30,7 @@ for line in s.splitlines():
   L.command(line);
 
 
-# In[3]:
+# In[ ]:
 
 
 x=np.random.uniform(3,97,10)
@@ -40,13 +40,13 @@ z=np.random.uniform(3,97,10)
 points=list(zip(x,y,z))
 
 
-# In[4]:
+# In[ ]:
 
 
 points
 
 
-# In[5]:
+# In[ ]:
 
 
 j=1
@@ -55,7 +55,7 @@ for i in points:
     j=j+1
 
 
-# In[6]:
+# In[ ]:
 
 
 s="""
@@ -66,6 +66,16 @@ info all out
 for line in s.splitlines():
  # print_log(line);
   L.command(line);
+
+
+# In[ ]:
+
+
+orignal="delete_atoms region "
+
+for j in range(1,11):
+    line=orignal+str(j)
+    L.command(line)
 
 
 # In[8]:
