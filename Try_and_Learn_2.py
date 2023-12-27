@@ -23,7 +23,24 @@ neigh_modify	delay 5
 lattice		fcc 3.52
 region		box block 0 100 0 100 0 100
 create_box	3 box
-create_atoms	1 box"""
+create_atoms	1 box
+
+region 1 block INF INF INF 1.25 INF INF
+group lower_y region 1
+region 2 block INF 1.25 INF INF  INF INF
+group lower_x region 2
+region 3 block INF  INF INF  INF INF -200
+group lower_z region 3
+region 4 block INF INF 99 INF  INF INF
+group upper_y region 4
+region 5 block 99 INF INF INF  INF INF
+group upper_x region 5
+region 6 block INF  INF INF  INF 99 INF
+group upper_z region 6
+
+group boundary union lower_y lower_x lower_z upper_y upper_x upper_z
+group flow subtract all boundary
+"""
 
 for line in s.splitlines():
  # print_log(line);
