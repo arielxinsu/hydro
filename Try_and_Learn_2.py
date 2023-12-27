@@ -30,9 +30,10 @@ for line in s.splitlines():
   L.command(line);
 
 
-# In[ ]:
+# In[2]:
 
 
+import numpy as np
 x=np.random.uniform(3,97,10)
 y=np.random.uniform(3,97,10)
 z=np.random.uniform(3,97,10)
@@ -71,10 +72,10 @@ for line in s.splitlines():
 # In[ ]:
 
 
-orignal="delete_atoms region "
-
+original="delete_atoms region "
 for j in range(1,11):
-    line=orignal+str(j)
+    line1=original+str(j)
+    line2="fix "+ str(j+1) +"flow indent "+str(100)+" sphere "+ str(points[j-1][0])+" "+str(points[j-1][1])+" "+str(points[j-1][2])+" "+str(4)
     L.command(line)
 
 
