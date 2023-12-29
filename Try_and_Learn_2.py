@@ -67,7 +67,7 @@ points
 # In[ ]:
 
 
-j=1
+j=7
 for i in points:
     L.region(j,"sphere",i[0],i[1],i[2],3)
     j=j+1
@@ -90,10 +90,11 @@ for line in s.splitlines():
 
 
 original="delete_atoms region "
-for j in range(1,11):
+for j in range(7,17):
     line1=original+str(j)
-    line2="fix "+ str(j+1) +"flow indent "+str(100)+" sphere "+ str(points[j-1][0])+" "+str(points[j-1][1])+" "+str(points[j-1][2])+" "+str(4)
-    L.command(line)
+    line2="fix "+ str(j) +" flow indent "+str(100)+" sphere "+ str(points[j-7][0])+" "+str(points[j-7][1])+" "+str(points[j-7][2])+" "+str(4)
+    L.command(line1)
+    L.command(line2)
 
 
 # In[8]:

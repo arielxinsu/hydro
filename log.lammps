@@ -1,0 +1,81 @@
+LAMMPS (29 Oct 2020)
+atom_style	atomic
+neighbor	0.3 bin
+neigh_modify	delay 5
+# create geometry
+lattice		fcc 3.52
+Lattice spacing in x,y,z = 1.0435320 1.0435320 1.0435320
+region		box block 0 100 0 100 0 100
+create_box	3 box
+Created orthogonal box = (0.0000000 0.0000000 0.0000000) to (104.35320 104.35320 104.35320)
+  1 by 1 by 1 MPI processor grid
+create_atoms	1 box
+Created 4000000 atoms
+  create_atoms CPU = 0.803 seconds
+region 1 block INF INF INF 1.25 INF INF
+group lower_y region 1
+60000 atoms in group lower_y
+region 2 block INF 1.25 INF INF  INF INF
+group lower_x region 2
+60000 atoms in group lower_x
+region 3 block INF  INF INF  INF INF -200
+group lower_z region 3
+0 atoms in group lower_z
+region 4 block INF INF 99 INF  INF INF
+group upper_y region 4
+40000 atoms in group upper_y
+region 5 block 99 INF INF INF  INF INF
+group upper_x region 5
+40000 atoms in group upper_x
+region 6 block INF  INF INF  INF 99 INF
+group upper_z region 6
+40000 atoms in group upper_z
+group boundary union lower_y lower_x lower_z upper_y upper_x upper_z
+235525 atoms in group boundary
+group flow subtract all boundary
+3764475 atoms in group flow
+region 7 sphere 12.817047238368716 92.03364141948421 14.854030397121369 3
+region 8 sphere 29.810196714055618 21.641290046592452 69.66891783292668 3
+region 9 sphere 87.1381296969987 15.06855692284409 45.44422120904804 3
+region 10 sphere 78.0691336652833 95.61837261471177 18.160709762011003 3
+region 11 sphere 50.691146414913504 33.07562136694743 43.56439536269102 3
+region 12 sphere 92.88173845450794 37.24098837646912 14.3896181042966 3
+region 13 sphere 61.207698511184 83.36963260638568 35.649039319967244 3
+region 14 sphere 55.79320747667289 23.54430508246203 60.532941143929165 3
+region 15 sphere 96.74309579517973 32.642430361329176 4.4105895840322065 3
+region 16 sphere 6.331093504689827 40.605332813057395 77.26354924372876 3
+info all out
+WARNING: Ignoring unknown or incorrect info command flag (../info.cpp:257)
+delete_atoms region 7
+Deleted 452 atoms, new total = 3999548
+fix 7 flow indent 100 sphere 12.817047238368716 92.03364141948421 14.854030397121369 4
+delete_atoms region 8
+Deleted 458 atoms, new total = 3999090
+fix 8 flow indent 100 sphere 29.810196714055618 21.641290046592452 69.66891783292668 4
+delete_atoms region 9
+Deleted 453 atoms, new total = 3998637
+fix 9 flow indent 100 sphere 87.1381296969987 15.06855692284409 45.44422120904804 4
+delete_atoms region 10
+Deleted 449 atoms, new total = 3998188
+fix 10 flow indent 100 sphere 78.0691336652833 95.61837261471177 18.160709762011003 4
+delete_atoms region 11
+Deleted 449 atoms, new total = 3997739
+fix 11 flow indent 100 sphere 50.691146414913504 33.07562136694743 43.56439536269102 4
+delete_atoms region 12
+Deleted 457 atoms, new total = 3997282
+fix 12 flow indent 100 sphere 92.88173845450794 37.24098837646912 14.3896181042966 4
+delete_atoms region 13
+Deleted 455 atoms, new total = 3996827
+fix 13 flow indent 100 sphere 61.207698511184 83.36963260638568 35.649039319967244 4
+delete_atoms region 14
+Deleted 447 atoms, new total = 3996380
+fix 14 flow indent 100 sphere 55.79320747667289 23.54430508246203 60.532941143929165 4
+delete_atoms region 15
+Deleted 456 atoms, new total = 3995924
+fix 15 flow indent 100 sphere 96.74309579517973 32.642430361329176 4.4105895840322065 4
+delete_atoms region 16
+Deleted 458 atoms, new total = 3995466
+fix 16 flow indent 100 sphere 6.331093504689827 40.605332813057395 77.26354924372876 4
+info all out
+WARNING: Ignoring unknown or incorrect info command flag (../info.cpp:257)
+Total wall time: 0:00:03
