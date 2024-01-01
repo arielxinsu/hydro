@@ -504,9 +504,9 @@ for j in range(7,17):
 
 
 #s="""
-fix 2 flow indent 100 sphere 10 4 0 4
-fix 3 flow indent 100 sphere 20 7 0 4
-"""
+#fix 2 flow indent 100 sphere 10 4 0 4
+#fix 3 flow indent 100 sphere 20 7 0 4
+#"""
 
 #print_log("Sending commands to LAMMPs");
 #for line in s.splitlines():
