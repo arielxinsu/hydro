@@ -418,19 +418,19 @@ for line in s.splitlines():
 # In[13]:
 
 
-s="""
+#s="""
 # 2 obstacles
 
-region		void1 sphere 10 4 0 70
-delete_atoms	region void1
-region		void2 sphere 120 7 0 70
-delete_atoms	region void2
-"""
+#region		void1 sphere 10 4 0 70
+#delete_atoms	region void1
+#region		void2 sphere 120 7 0 70
+#delete_atoms	region void2
+#"""
 
-print_log("Sending commands to LAMMPs");
-for line in s.splitlines():
-  print_log(line);
-  L.command(line);
+#print_log("Sending commands to LAMMPs");
+#for line in s.splitlines():
+#  print_log(line);
+#  L.command(line);
 
 
 # In[14]:
@@ -487,7 +487,7 @@ points=list(zip(x,y,z))
 
 j=7
 for i in points:
-    L.region(j,"sphere",i[0],i[1],i[2],3)
+    L.region(j,"sphere",i[0],i[1],i[2],8)
     j=j+1
 
 original="delete_atoms region "
