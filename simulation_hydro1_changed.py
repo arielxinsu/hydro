@@ -458,6 +458,22 @@ print_log("Sending commands to LAMMPs");
 for line in s.splitlines():
   print_log(line);
   L.command(line);
+  
+# In[15]:
+
+
+s="""
+# define groups
+
+group boundary union lower_y lower_x lower_z upper_y upper_x upper_z
+group flow subtract all boundary
+
+"""
+
+print_log("Sending commands to LAMMPs");
+for line in s.splitlines():
+  print_log(line);
+  L.command(line);
 
 
 # In[ ]:
@@ -482,21 +498,6 @@ for j in range(7,17):
     L.command(line2)
 
 
-# In[15]:
-
-
-s="""
-# define groups
-
-group boundary union lower_y lower_x lower_z upper_y upper_x upper_z
-group flow subtract all boundary
-
-"""
-
-print_log("Sending commands to LAMMPs");
-for line in s.splitlines():
-  print_log(line);
-  L.command(line);
 
 
 # In[16]:
