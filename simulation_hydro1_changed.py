@@ -487,7 +487,7 @@ points=list(zip(x,y,z))
 
 j=7
 for i in points:
-    L.region(j,"sphere",i[0],i[1],i[2],8)
+    L.region(j,"sphere",i[0],i[1],i[2],20)
     j=j+1
 
 original="delete_atoms region "
