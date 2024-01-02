@@ -479,23 +479,25 @@ for line in s.splitlines():
 # In[ ]:
 
 
-x=np.random.uniform(-200,200,10)
-y=np.random.uniform(-200,200,10)
-z=np.random.uniform(-200,200,10)
+x=np.random.uniform(-160,160,10)
+y=np.random.uniform(-160,160,10)
+z=np.random.uniform(-160,160,10)
 
 points=list(zip(x,y,z))
 
 j=7
 for i in points:
-    L.region(j,"sphere",i[0],i[1],i[2],50)
+    L.region(j,"sphere",i[0],i[1],i[2],40)
     j=j+1
 
 original="delete_atoms region "
 for j in range(7,17):
     line1=original+str(j)
-    line2="fix "+ str(j) +" flow indent "+str(100)+" sphere "+ str(points[j-7][0])+" "+str(points[j-7][1])+" "+str(points[j-7][2])+" "+str(4)
+    line2="fix "+ str(j) +" flow indent "+str(10.0)+" sphere "+ str(points[j-7][0])+" "+str(points[j-7][1])+" "+str(points[j-7][2])+" "+str(40)
     L.command(line1)
+    print_log(line1)
     L.command(line2)
+    print_log(line2)
 
 
 
@@ -547,7 +549,7 @@ for line in s.splitlines():
 
 
 s="""
-fix 5 forcing setforce 300.0 0.0 0.0
+fix 5 forcing setforce 80.0 0.0 0.0
 """
 
 print_log("Sending commands to LAMMPs");

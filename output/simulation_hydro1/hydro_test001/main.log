@@ -113,6 +113,26 @@ Sending commands to LAMMPs
 group boundary union lower_y lower_x lower_z upper_y upper_x upper_z
 group flow subtract all boundary
 
+delete_atoms region 7
+fix 7 flow indent 10.0 sphere -10.147653565265784 -120.19748734673335 10.179740091106993 40
+delete_atoms region 8
+fix 8 flow indent 10.0 sphere -12.266859754118087 -128.83761475482976 -122.50741404411824 40
+delete_atoms region 9
+fix 9 flow indent 10.0 sphere -135.7419816581496 122.86143562184964 -150.2543466039866 40
+delete_atoms region 10
+fix 10 flow indent 10.0 sphere 1.7982766264782128 -133.67855250681814 9.604588122504424 40
+delete_atoms region 11
+fix 11 flow indent 10.0 sphere -10.977594307926097 136.24782998825515 39.63981003471076 40
+delete_atoms region 12
+fix 12 flow indent 10.0 sphere -82.60994127721517 -4.654832354667462 47.96339221074703 40
+delete_atoms region 13
+fix 13 flow indent 10.0 sphere -31.11841649574413 -48.25866891492166 94.67327995287152 40
+delete_atoms region 14
+fix 14 flow indent 10.0 sphere 159.52812886690378 152.40121075064394 -98.14138028573825 40
+delete_atoms region 15
+fix 15 flow indent 10.0 sphere 153.4114271496136 134.13933605649697 7.66989425778479 40
+delete_atoms region 16
+fix 16 flow indent 10.0 sphere 136.24285236211756 38.33068287347248 116.62037444145744 40
 Sending commands to LAMMPs
 
 ##(New) fix spring 
@@ -123,7 +143,7 @@ Sending commands to LAMMPs
 group forcing type 3
 Sending commands to LAMMPs
 
-fix 5 forcing setforce 300.0 0.0 0.0
+fix 5 forcing setforce 80.0 0.0 0.0
 Sending commands to LAMMPs
 
 info all out

@@ -1,6 +1,6 @@
 
 Info-Info-Info-Info-Info-Info-Info-Info-Info-Info-Info
-Printed on Tue Jan  2 14:44:42 2024
+Printed on Tue Jan  2 15:39:34 2024
 
 
 LAMMPS version: 29 Oct 2020 / 20201029
@@ -32,7 +32,7 @@ Memory allocation information (MPI rank 0):
 
 Total dynamically allocated memory: 0.02355 Mbyte
 Current reserved memory pool size: 12.91 Mbyte
-Maximum resident set size: 71.46 Mbyte
+Maximum resident set size: 72.38 Mbyte
 
 Communication information:
 MPI library level: MPI v1.2
