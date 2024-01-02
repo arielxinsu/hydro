@@ -479,15 +479,15 @@ for line in s.splitlines():
 # In[ ]:
 
 
-x=np.random.uniform(3,97,10)
-y=np.random.uniform(3,97,10)
-z=np.random.uniform(3,97,10)
+x=np.random.uniform(-200,200,10)
+y=np.random.uniform(-200,200,10)
+z=np.random.uniform(-200,200,10)
 
 points=list(zip(x,y,z))
 
 j=7
 for i in points:
-    L.region(j,"sphere",i[0],i[1],i[2],20)
+    L.region(j,"sphere",i[0],i[1],i[2],50)
     j=j+1
 
 original="delete_atoms region "
