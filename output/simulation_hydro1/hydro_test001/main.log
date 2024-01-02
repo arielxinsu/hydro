@@ -91,14 +91,6 @@ fix 1 all selm Main.SELM_params
 
 Sending commands to LAMMPs
 
-# 2 obstacles
-
-region		void1 sphere 10 4 0 70
-delete_atoms	region void1
-region		void2 sphere 120 7 0 70
-delete_atoms	region void2
-Sending commands to LAMMPs
-
 # define groups
 
 region 1 block INF INF INF -200 INF INF
@@ -121,10 +113,6 @@ Sending commands to LAMMPs
 group boundary union lower_y lower_x lower_z upper_y upper_x upper_z
 group flow subtract all boundary
 
-Sending commands to LAMMPs
-
-fix 2 flow indent 100 sphere 10 4 0 4
-fix 3 flow indent 100 sphere 20 7 0 4
 Sending commands to LAMMPs
 
 ##(New) fix spring 
@@ -150,6 +138,7 @@ timestep 6
 
 # == Run the simulation
 run      100 upto
+
+# == Write restart data
+write_restart ${baseFilename}.LAMMPS_restart_data
 Done
-No such comm target registered: jupyter.widget.control
-No such comm: 92fc2d84-d8b5-4890-92ab-7a2a96dfa800
