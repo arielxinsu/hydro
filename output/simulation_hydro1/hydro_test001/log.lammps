@@ -46,7 +46,7 @@ Finding 1-2 1-3 1-4 neighbors ...
      0 = max # of 1-4 neighbors
      1 = max # of special neighbors
   special bonds CPU = 0.001 seconds
-  read_data CPU = 0.006 seconds
+  read_data CPU = 0.009 seconds
 velocity all zero linear                   # initialize all atomic velocities initially to zero
 # == Interactions 
 pair_style none
@@ -89,61 +89,61 @@ group boundary union lower_y lower_x lower_z upper_y upper_x upper_z
 0 atoms in group boundary
 group flow subtract all boundary
 2664 atoms in group flow
-region 7 sphere -118.58278590362993 -98.36244172229715 -25.362631893840756 40
-region 8 sphere 85.93951232259565 48.826222953243786 -141.61068007687464 40
-region 9 sphere -71.10697357365683 89.94220825739703 -59.05760141596289 40
-region 10 sphere -87.7382077240294 62.825225011967916 77.32072433888973 40
-region 11 sphere -3.334422998356615 -116.89271571509316 -109.08709578875971 40
-region 12 sphere -87.52673074060525 -15.799250746379073 3.6605695841456622 40
-region 13 sphere -71.09376433120173 154.98965300457928 146.3808815691392 40
-region 14 sphere -5.721584509443886 47.69806893637633 -116.00245439870793 40
-region 15 sphere -101.24269053037295 -108.20677185457171 61.544725863922594 40
-region 16 sphere 153.5888088375828 156.7719538138166 -55.68809287735843 40
+region 7 sphere 81.77507937200659 -105.89756440959526 -121.6785635717256 40
+region 8 sphere 64.30171470795051 9.584236453122458 -8.960177619792432 40
+region 9 sphere -28.105305563383666 -98.86024610353755 -13.808941422736183 40
+region 10 sphere -105.40561449304938 -98.2861895699659 -9.614661808001728 40
+region 11 sphere 78.63320279850683 -41.106746138974984 13.208058253031822 40
+region 12 sphere -65.90901112592732 -133.6413703051482 72.97114008893104 40
+region 13 sphere 69.36480401412038 45.21926353966518 -90.73837109558863 40
+region 14 sphere -86.64685404148673 139.06228734387582 -159.65556277092776 40
+region 15 sphere -44.945540451251205 109.73989396939436 32.37478185726212 40
+region 16 sphere 47.16232662598145 -52.728761079514115 -110.20733606958395 40
 delete_atoms region 7
 WARNING: Ignoring 'compress yes' for molecular system (../delete_atoms.cpp:125)
 Deleted 10 atoms, new total = 2654
-fix 7 flow indent 10.0 sphere -118.58278590362993 -98.36244172229715 -25.362631893840756 41
+fix 7 flow indent 30 sphere 81.77507937200659 -105.89756440959526 -121.6785635717256 41
 delete_atoms region 8
 WARNING: Ignoring 'compress yes' for molecular system (../delete_atoms.cpp:125)
-Deleted 13 atoms, new total = 2641
-fix 8 flow indent 10.0 sphere 85.93951232259565 48.826222953243786 -141.61068007687464 41
+Deleted 10 atoms, new total = 2644
+fix 8 flow indent 30 sphere 64.30171470795051 9.584236453122458 -8.960177619792432 41
 delete_atoms region 9
 WARNING: Ignoring 'compress yes' for molecular system (../delete_atoms.cpp:125)
-Deleted 11 atoms, new total = 2630
-fix 9 flow indent 10.0 sphere -71.10697357365683 89.94220825739703 -59.05760141596289 41
+Deleted 12 atoms, new total = 2632
+fix 9 flow indent 30 sphere -28.105305563383666 -98.86024610353755 -13.808941422736183 41
 delete_atoms region 10
 WARNING: Ignoring 'compress yes' for molecular system (../delete_atoms.cpp:125)
-Deleted 10 atoms, new total = 2620
-fix 10 flow indent 10.0 sphere -87.7382077240294 62.825225011967916 77.32072433888973 41
+Deleted 9 atoms, new total = 2623
+fix 10 flow indent 30 sphere -105.40561449304938 -98.2861895699659 -9.614661808001728 41
 delete_atoms region 11
 WARNING: Ignoring 'compress yes' for molecular system (../delete_atoms.cpp:125)
-Deleted 10 atoms, new total = 2610
-fix 11 flow indent 10.0 sphere -3.334422998356615 -116.89271571509316 -109.08709578875971 41
+Deleted 10 atoms, new total = 2613
+fix 11 flow indent 30 sphere 78.63320279850683 -41.106746138974984 13.208058253031822 41
 delete_atoms region 12
 WARNING: Ignoring 'compress yes' for molecular system (../delete_atoms.cpp:125)
-Deleted 11 atoms, new total = 2599
-fix 12 flow indent 10.0 sphere -87.52673074060525 -15.799250746379073 3.6605695841456622 41
+Deleted 11 atoms, new total = 2602
+fix 12 flow indent 30 sphere -65.90901112592732 -133.6413703051482 72.97114008893104 41
 delete_atoms region 13
 WARNING: Ignoring 'compress yes' for molecular system (../delete_atoms.cpp:125)
-Deleted 11 atoms, new total = 2588
-fix 13 flow indent 10.0 sphere -71.09376433120173 154.98965300457928 146.3808815691392 41
+Deleted 11 atoms, new total = 2591
+fix 13 flow indent 30 sphere 69.36480401412038 45.21926353966518 -90.73837109558863 41
 delete_atoms region 14
 WARNING: Ignoring 'compress yes' for molecular system (../delete_atoms.cpp:125)
-Deleted 10 atoms, new total = 2578
-fix 14 flow indent 10.0 sphere -5.721584509443886 47.69806893637633 -116.00245439870793 41
+Deleted 12 atoms, new total = 2579
+fix 14 flow indent 30 sphere -86.64685404148673 139.06228734387582 -159.65556277092776 41
 delete_atoms region 15
 WARNING: Ignoring 'compress yes' for molecular system (../delete_atoms.cpp:125)
-Deleted 11 atoms, new total = 2567
-fix 15 flow indent 10.0 sphere -101.24269053037295 -108.20677185457171 61.544725863922594 41
+Deleted 10 atoms, new total = 2569
+fix 15 flow indent 30 sphere -44.945540451251205 109.73989396939436 32.37478185726212 41
 delete_atoms region 16
 WARNING: Ignoring 'compress yes' for molecular system (../delete_atoms.cpp:125)
-Deleted 14 atoms, new total = 2553
-fix 16 flow indent 10.0 sphere 153.5888088375828 156.7719538138166 -55.68809287735843 41
+Deleted 8 atoms, new total = 2561
+fix 16 flow indent 30 sphere 47.16232662598145 -52.728761079514115 -110.20733606958395 41
 ##(New) fix spring 
 fix 4 all spring tether 5.0 0.0 0.0 0.0 5.0
 group forcing type 3
-1271 atoms in group forcing
-fix 5 forcing setforce 80.0 0.0 0.0
+1281 atoms in group forcing
+fix 5 forcing setforce 20.0 0.0 0.0
 info all out
 WARNING: Ignoring unknown or incorrect info command flag (../info.cpp:257)
 # == Setup output data write to disk
@@ -161,29 +161,29 @@ Neighbor list info ...
   ghost atom cutoff = 202
   binsize = 404, bins = 1 1 1
   0 neighbor lists, perpetual/occasional/extra = 0 0 0
-Per MPI rank memory allocation (min/avg/max) = 8.103 | 8.103 | 8.103 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 8.104 | 8.104 | 8.104 Mbytes
 Step Temp E_pair E_mol TotEng Press Volume 
        0            0            0            0            0            0     65939264 
-     100    1.9541054            0            0      103.277 1.0441629e-06     65939264 
-Loop time of 47.2709 on 1 procs for 100 steps with 2553 atoms
+     100   0.14046709            0            0    7.4471405 7.5292929e-08     65939264 
+Loop time of 47.2621 on 1 procs for 100 steps with 2561 atoms
 
-Performance: 1096657.774 ns/day, 0.000 hours/ns, 2.115 timesteps/s
-97.1% CPU use with 1 MPI tasks x no OpenMP threads
+Performance: 1096862.339 ns/day, 0.000 hours/ns, 2.116 timesteps/s
+97.5% CPU use with 1 MPI tasks x no OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
 Pair    | 0          | 0          | 0          |   0.0 |  0.00
-Bond    | 2.3842e-05 | 2.3842e-05 | 2.3842e-05 |   0.0 |  0.00
-Neigh   | 0.0002439  | 0.0002439  | 0.0002439  |   0.0 |  0.00
-Comm    | 0.1044     | 0.1044     | 0.1044     |   0.0 |  0.22
-Output  | 1.7278     | 1.7278     | 1.7278     |   0.0 |  3.66
-Modify  | 45.432     | 45.432     | 45.432     |   0.0 | 96.11
-Other   |            | 0.006368   |            |       |  0.01
+Bond    | 2.0981e-05 | 2.0981e-05 | 2.0981e-05 |   0.0 |  0.00
+Neigh   | 0.00022078 | 0.00022078 | 0.00022078 |   0.0 |  0.00
+Comm    | 0.10614    | 0.10614    | 0.10614    |   0.0 |  0.22
+Output  | 1.634      | 1.634      | 1.634      |   0.0 |  3.46
+Modify  | 45.516     | 45.516     | 45.516     |   0.0 | 96.30
+Other   |            | 0.006016   |            |       |  0.01
 
-Nlocal:        2553.00 ave        2553 max        2553 min
+Nlocal:        2561.00 ave        2561 max        2561 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Nghost:        17871.0 ave       17871 max       17871 min
+Nghost:        17927.0 ave       17927 max       17927 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 Neighs:        0.00000 ave           0 max           0 min
 Histogram: 1 0 0 0 0 0 0 0 0 0

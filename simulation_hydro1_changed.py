@@ -493,7 +493,7 @@ for i in points:
 original="delete_atoms region "
 for j in range(7,17):
     line1=original+str(j)
-    line2="fix "+ str(j) +" flow indent "+str(10.0)+" sphere "+ str(points[j-7][0])+" "+str(points[j-7][1])+" "+str(points[j-7][2])+" "+str(41)
+    line2="fix "+ str(j) +" flow indent "+str(30)+" sphere "+ str(points[j-7][0])+" "+str(points[j-7][1])+" "+str(points[j-7][2])+" "+str(41)
     L.command(line1)
     print_log(line1)
     L.command(line2)
@@ -549,7 +549,7 @@ for line in s.splitlines():
 
 
 s="""
-fix 5 forcing setforce 80.0 0.0 0.0
+fix 5 forcing setforce 20.0 0.0 0.0
 """
 
 print_log("Sending commands to LAMMPs");
