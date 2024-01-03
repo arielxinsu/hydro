@@ -493,7 +493,7 @@ for i in points:
 original="delete_atoms region "
 for j in range(7,17):
     line1=original+str(j)
-    line2="fix "+ str(j) +" flow indent "+str(30)+" sphere "+ str(points[j-7][0])+" "+str(points[j-7][1])+" "+str(points[j-7][2])+" "+str(41)
+    line2="fix "+ str(j) +" flow indent "+str(50)+" sphere "+ str(points[j-7][0])+" "+str(points[j-7][1])+" "+str(points[j-7][2])+" "+str(41)
     L.command(line1)
     print_log(line1)
     L.command(line2)
