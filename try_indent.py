@@ -76,9 +76,9 @@ fix		4 upper setforce 0.0 NULL 0.0
 fix		5 upper aveforce 0.0 -0.5 0.0
 fix		6 flow addforce 1.0 0.0 0.0
 """
-print_log("Sending commands to LAMMPs");
+print("Sending commands to LAMMPs");
 for line in s.splitlines():
-  print_log(line);
+  print(line);
   L.command(line);
 
 x=np.random.uniform(4,36,2)
@@ -97,9 +97,9 @@ for j in range(3,5):
     line1=original+str(j)
     line2="fix "+ str(j) +" flow indent "+str(100)+" sphere "+ str(points[j-3][0])+" "+str(points[j-3][1])+" "+str(4)
     L.command(line1)
-    print_log(line1)
+    print(line1)
     L.command(line2)
-    print_log(line2)
+    print(line2)
 
 s="""
 fix		9 all enforce2d
@@ -122,8 +122,8 @@ dump		1 all atom 100 dump.obstacle
 
 run		25000
 """
-print_log("Sending commands to LAMMPs");
+print("Sending commands to LAMMPs");
 for line in s.splitlines():
-  print_log(line);
+  print(line);
   L.command(line);
 
