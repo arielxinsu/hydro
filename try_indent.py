@@ -89,13 +89,13 @@ points=list(zip(x,y))
 
 j=3                                                  
 for i in points:
-    L.region(j,"sphere",i[0],i[1],i[2],3)
+    L.region(j,"sphere",i[0],i[1],0,3)
     j=j+1
 
 original="delete_atoms region "
 for j in range(3,5):
     line1=original+str(j)
-    line2="fix "+ str(j) +" flow indent "+str(100)+" sphere "+ str(points[j-3][0])+" "+str(points[j-3][1])+" "+str(4)
+    line2="fix "+ str(j) +" flow indent "+str(100)+" sphere "+ str(points[j-3][0])+" "+str(points[j-3][1])+" "+str(0)+" "+str(4)
     L.command(line1)
     print(line1)
     L.command(line2)
