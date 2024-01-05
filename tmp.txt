@@ -1,6 +1,6 @@
 
 Info-Info-Info-Info-Info-Info-Info-Info-Info-Info-Info
-Printed on Thu Jan  4 17:45:31 2024
+Printed on Thu Jan  4 18:20:08 2024
 
 
 LAMMPS version: 29 Oct 2020 / 20201029
@@ -31,8 +31,8 @@ MOLECULE USER-MISC USER-VTK
 Memory allocation information (MPI rank 0):
 
 Total dynamically allocated memory: 0.02355 Mbyte
-Current reserved memory pool size: 12.23 Mbyte
-Maximum resident set size: 71.19 Mbyte
+Current reserved memory pool size: 12.22 Mbyte
+Maximum resident set size: 70.99 Mbyte
 
 Communication information:
 MPI library level: MPI v1.2
