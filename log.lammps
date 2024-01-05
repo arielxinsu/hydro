@@ -1,81 +1,142 @@
 LAMMPS (29 Oct 2020)
+info all out overwrite tmp.txt
+# 2d LJ obstacle flow
+dimension	2
+boundary	p s p
 atom_style	atomic
 neighbor	0.3 bin
 neigh_modify	delay 5
 # create geometry
-lattice		fcc 3.52
-Lattice spacing in x,y,z = 1.0435320 1.0435320 1.0435320
-region		box block 0 100 0 100 0 100
+lattice		hex 0.7
+Lattice spacing in x,y,z = 1.2843567 2.2245711 1.2843567
+region		box block 0 40 0 10 -0.25 0.25
 create_box	3 box
-Created orthogonal box = (0.0000000 0.0000000 0.0000000) to (104.35320 104.35320 104.35320)
+Created orthogonal box = (0.0000000 0.0000000 -0.32108918) to (51.374269 22.245711 0.32108918)
   1 by 1 by 1 MPI processor grid
 create_atoms	1 box
-Created 4000000 atoms
-  create_atoms CPU = 0.803 seconds
-region 1 block INF INF INF 1.25 INF INF
-group lower_y region 1
-60000 atoms in group lower_y
-region 2 block INF 1.25 INF INF  INF INF
-group lower_x region 2
-60000 atoms in group lower_x
-region 3 block INF  INF INF  INF INF -200
-group lower_z region 3
-0 atoms in group lower_z
-region 4 block INF INF 99 INF  INF INF
-group upper_y region 4
-40000 atoms in group upper_y
-region 5 block 99 INF INF INF  INF INF
-group upper_x region 5
-40000 atoms in group upper_x
-region 6 block INF  INF INF  INF 99 INF
-group upper_z region 6
-40000 atoms in group upper_z
-group boundary union lower_y lower_x lower_z upper_y upper_x upper_z
-235525 atoms in group boundary
-group flow subtract all boundary
-3764475 atoms in group flow
-region 7 sphere 12.817047238368716 92.03364141948421 14.854030397121369 3
-region 8 sphere 29.810196714055618 21.641290046592452 69.66891783292668 3
-region 9 sphere 87.1381296969987 15.06855692284409 45.44422120904804 3
-region 10 sphere 78.0691336652833 95.61837261471177 18.160709762011003 3
-region 11 sphere 50.691146414913504 33.07562136694743 43.56439536269102 3
-region 12 sphere 92.88173845450794 37.24098837646912 14.3896181042966 3
-region 13 sphere 61.207698511184 83.36963260638568 35.649039319967244 3
-region 14 sphere 55.79320747667289 23.54430508246203 60.532941143929165 3
-region 15 sphere 96.74309579517973 32.642430361329176 4.4105895840322065 3
-region 16 sphere 6.331093504689827 40.605332813057395 77.26354924372876 3
-info all out
-WARNING: Ignoring unknown or incorrect info command flag (../info.cpp:257)
-delete_atoms region 7
-Deleted 452 atoms, new total = 3999548
-fix 7 flow indent 100 sphere 12.817047238368716 92.03364141948421 14.854030397121369 4
-delete_atoms region 8
-Deleted 458 atoms, new total = 3999090
-fix 8 flow indent 100 sphere 29.810196714055618 21.641290046592452 69.66891783292668 4
-delete_atoms region 9
-Deleted 453 atoms, new total = 3998637
-fix 9 flow indent 100 sphere 87.1381296969987 15.06855692284409 45.44422120904804 4
-delete_atoms region 10
-Deleted 449 atoms, new total = 3998188
-fix 10 flow indent 100 sphere 78.0691336652833 95.61837261471177 18.160709762011003 4
-delete_atoms region 11
-Deleted 449 atoms, new total = 3997739
-fix 11 flow indent 100 sphere 50.691146414913504 33.07562136694743 43.56439536269102 4
-delete_atoms region 12
-Deleted 457 atoms, new total = 3997282
-fix 12 flow indent 100 sphere 92.88173845450794 37.24098837646912 14.3896181042966 4
-delete_atoms region 13
-Deleted 455 atoms, new total = 3996827
-fix 13 flow indent 100 sphere 61.207698511184 83.36963260638568 35.649039319967244 4
-delete_atoms region 14
-Deleted 447 atoms, new total = 3996380
-fix 14 flow indent 100 sphere 55.79320747667289 23.54430508246203 60.532941143929165 4
-delete_atoms region 15
-Deleted 456 atoms, new total = 3995924
-fix 15 flow indent 100 sphere 96.74309579517973 32.642430361329176 4.4105895840322065 4
-delete_atoms region 16
-Deleted 458 atoms, new total = 3995466
-fix 16 flow indent 100 sphere 6.331093504689827 40.605332813057395 77.26354924372876 4
-info all out
-WARNING: Ignoring unknown or incorrect info command flag (../info.cpp:257)
-Total wall time: 0:00:03
+Created 840 atoms
+  create_atoms CPU = 0.001 seconds
+mass		1 1.0
+mass		2 1.0
+mass		3 1.0
+# LJ potentials
+pair_style	lj/cut 1.12246
+pair_coeff	* * 1.0 1.0 1.12246
+# define groups
+region	        1 block INF INF INF 1.25 INF INF
+group		lower region 1
+120 atoms in group lower
+region		2 block INF INF 8.75 INF INF INF
+group		upper region 2
+120 atoms in group upper
+group		boundary union lower upper
+240 atoms in group boundary
+group		flow subtract all boundary
+600 atoms in group flow
+set		group lower type 2
+Setting atom values ...
+  120 settings made for type
+set		group upper type 3
+Setting atom values ...
+  120 settings made for type
+# initial velocities
+compute	        mobile flow temp
+velocity	flow create 1.0 482748 temp mobile
+fix		1 all nve
+fix		2 flow temp/rescale 200 1.0 1.0 0.02 1.0
+fix_modify	2 temp mobile
+# Poiselle flow
+velocity	boundary set 0.0 0.0 0.0
+fix		3 lower setforce 0.0 0.0 0.0
+fix		4 upper setforce 0.0 NULL 0.0
+fix		5 upper aveforce 0.0 -0.5 0.0
+fix		6 flow addforce 1.0 0.0 0.0
+region 3 sphere 31.386020241153197 8.249596599249127 0 3
+region 4 sphere 25.205294394852224 27.756626889862172 0 3
+delete_atoms region 3
+Deleted 31 atoms, new total = 809
+fix 7 flow indent 100 sphere 31.386020241153197 8.249596599249127 0 4
+delete_atoms region 4
+Deleted 0 atoms, new total = 809
+fix 8 flow indent 100 sphere 25.205294394852224 27.756626889862172 0 4
+fix		9 all enforce2d
+# Run
+timestep	0.003
+thermo		1000
+thermo_modify	temp mobile
+WARNING: Temperature for thermo pressure is not for group all (../thermo.cpp:472)
+dump		1 all atom 100 dump.obstacle
+#dump		2 all image 500 image.*.jpg type type &
+#		zoom 1.6 adiam 1.5
+#dump_modify	2 pad 5
+#dump		3 all movie 500 movie.mpg type type &
+#		zoom 1.6 adiam 1.5
+#dump_modify	3 pad 5
+run		25000
+Neighbor list info ...
+  update every 1 steps, delay 5 steps, check yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 1.42246
+  ghost atom cutoff = 1.42246
+  binsize = 0.71123, bins = 73 32 1
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/cut, perpetual
+      attributes: half, newton on
+      pair build: half/bin/atomonly/newton
+      stencil: half/bin/2d/newton
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 4.087 | 4.087 | 4.087 Mbytes
+Step Temp E_pair E_mol TotEng Press Volume 
+       0   0.99432497            0            0    0.7104077    0.5027793    1143.0857 
+    1000            1  -0.36796603            0   0.34649627    1.3170367    1219.9448 
+    2000            1  -0.33823362            0   0.37622868    1.0141343    1229.8786 
+    3000            1  -0.40645475            0   0.30800754    1.0516191    1238.1402 
+    4000            1  -0.49968532            0   0.21477698    1.3191276    1238.1904 
+    5000            1  -0.56746099            0   0.14700131    1.3625924    1258.1548 
+    6000            1  -0.61686509            0  0.097597207    1.4328716    1276.1448 
+    7000            1   -0.6170614            0  0.097400899     1.272172    1287.4361 
+    8000            1  -0.61738692            0  0.097075379    1.3190908    1299.5116 
+    9000            1  -0.59086453            0   0.12359777    1.1966746    1304.2867 
+   10000            1  -0.58395932            0   0.13050298     1.184679    1298.2234 
+   11000            1  -0.57911034            0   0.13535196    1.1716416    1301.4996 
+   12000            1  -0.55709461            0   0.15736769     1.131838    1299.2123 
+   13000            1  -0.55054787            0   0.16391442    1.1316522    1301.7098 
+   14000            1  -0.53789867            0   0.17656363    1.2234678    1297.5634 
+   15000            1  -0.55955512            0   0.15490718    1.1486566    1291.4131 
+   16000            1  -0.48639761            0   0.22806469    1.0283297    1295.6723 
+   17000            1  -0.54337469            0   0.17108761    1.0682788    1305.2222 
+   18000            1  -0.61128382            0   0.10317848    1.2628191    1288.4662 
+   19000            1   -0.5729253            0     0.141537    1.1288908    1291.3498 
+   20000            1  -0.57286345            0   0.14159885    1.1632572    1304.2096 
+   21000            1   -0.5216126            0    0.1928497     1.068219    1311.3092 
+   22000            1  -0.53672832            0   0.17773397     1.190125    1312.5407 
+   23000            1  -0.54494694            0   0.16951536    1.1075163    1315.1594 
+   24000            1   -0.5380543            0     0.176408    1.0086927    1304.4417 
+   25000            1  -0.52952173            0   0.18494057    1.1009889    1297.7431 
+Loop time of 4.87235 on 1 procs for 25000 steps with 809 atoms
+
+Performance: 1329953.725 tau/day, 5130.994 timesteps/s
+99.9% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 1.5882     | 1.5882     | 1.5882     |   0.0 | 32.60
+Neigh   | 0.29938    | 0.29938    | 0.29938    |   0.0 |  6.14
+Comm    | 0.065023   | 0.065023   | 0.065023   |   0.0 |  1.33
+Output  | 0.23073    | 0.23073    | 0.23073    |   0.0 |  4.74
+Modify  | 2.4363     | 2.4363     | 2.4363     |   0.0 | 50.00
+Other   |            | 0.2527     |            |       |  5.19
+
+Nlocal:        809.000 ave         809 max         809 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:        43.0000 ave          43 max          43 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:        1960.00 ave        1960 max        1960 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 1960
+Ave neighs/atom = 2.4227441
+Neighbor list builds = 1450
+Dangerous builds = 0
+Total wall time: 0:00:04
