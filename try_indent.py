@@ -85,7 +85,7 @@ x=np.random.uniform(4,36,2)
 y=np.random.uniform(4,36,2)
 
 
-points=list(zip(x,y,z))
+points=list(zip(x,y))
 
 j=3                                                  
 for i in points:
