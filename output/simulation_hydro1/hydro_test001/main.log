@@ -114,25 +114,25 @@ group boundary union lower_y lower_x lower_z upper_y upper_x upper_z
 group flow subtract all boundary
 
 delete_atoms region 7
-fix 7 flow indent 50 sphere 93.78038903435228 -89.72223612055441 152.58549857746436 41
+fix 7 flow indent 50 sphere 21.182957143932697 -85.51052544568205 7.489667142364226 41
 delete_atoms region 8
-fix 8 flow indent 50 sphere 24.201880519590702 11.625118128709033 -3.5541762631515326 41
+fix 8 flow indent 50 sphere -143.83583802402524 22.337204656206524 94.7818465775002 41
 delete_atoms region 9
-fix 9 flow indent 50 sphere -81.91439217975162 -80.80059712799749 -119.88832420677906 41
+fix 9 flow indent 50 sphere -89.27935361394823 -139.8926712338961 36.40884139526486 41
 delete_atoms region 10
-fix 10 flow indent 50 sphere -24.011448152552674 -8.613257454153029 -45.31507042727988 41
+fix 10 flow indent 50 sphere -11.619999284857698 8.051877197796898 64.30506335103172 41
 delete_atoms region 11
-fix 11 flow indent 50 sphere 117.16402816505939 75.51836082103563 64.53048153602847 41
+fix 11 flow indent 50 sphere -67.03701599547156 -95.10002804971418 70.34781586847527 41
 delete_atoms region 12
-fix 12 flow indent 50 sphere -159.82548923837714 -22.020670951971795 121.71142663363139 41
+fix 12 flow indent 50 sphere 102.62717617675162 116.91553771030556 -117.20142571447674 41
 delete_atoms region 13
-fix 13 flow indent 50 sphere -122.88580657606836 69.79822636490226 74.96398718278817 41
+fix 13 flow indent 50 sphere 144.04979374304264 -109.03370053728648 -72.5468444811986 41
 delete_atoms region 14
-fix 14 flow indent 50 sphere -32.48186117255716 -44.077001982571005 -124.92032314356344 41
+fix 14 flow indent 50 sphere 76.03409943897344 78.36173912437798 150.20000352998716 41
 delete_atoms region 15
-fix 15 flow indent 50 sphere 146.2725340914957 -20.118609700566708 -93.66516838404152 41
+fix 15 flow indent 50 sphere -32.26412520433939 -30.77941692970876 37.424017324513414 41
 delete_atoms region 16
-fix 16 flow indent 50 sphere 149.09915722987017 -5.997246266992363 -56.60976411421106 41
+fix 16 flow indent 50 sphere -42.55963663671828 151.57570223914774 77.88084270164379 41
 Sending commands to LAMMPs
 
 ##(New) fix spring 
@@ -150,7 +150,7 @@ info all out
 Sending commands to LAMMPs
 
 # == Setup output data write to disk
-dump        dmp_vtk all vtk ${dumpfreq} ./vtk/Particles_*.vtp id type vx fx
+dump        dmp_vtk all vtk ${dumpfreq} ./vtk/Particles_*.vtp id type x y z vx vy vz fx fy fz
 dump_modify dmp_vtk pad 8 # ensures filenames file_000000.data
 
 # == simulation time-stepping
@@ -161,3 +161,4 @@ run      100 upto
 
 # == Write restart data
 write_restart ${baseFilename}.LAMMPS_restart_data
+Done
