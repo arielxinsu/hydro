@@ -533,7 +533,7 @@ s="""
 # == Setup output data write to disk
 dump        dmp_vtk all vtk ${dumpfreq} ./vtk/Particles_*.vtp id type vx fx
 dump_modify dmp_vtk pad 8 # ensures filenames file_000000.data
-fix extra all print 25 """{"timestep": $(step),"Point ID": $(id),"type": $(type), "x": $(x), "y": $(y), "z": $(z),"vx": $(vx), "vy": $(vy), "vz": $(vz)}""" title "" file output.txt screen no
+fix extra all print 25 """{"timestep": $(step),"Point ID": $(id),"type": $(type), "x": $(x), "y": $(y), "z": $(z),"vx": $(vx), "vy": $(vy), "vz": $(vz)}""" file output.txt screen no
 
 # == simulation time-stepping
 timestep 6
