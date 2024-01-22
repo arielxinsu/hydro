@@ -578,7 +578,8 @@ s="""
 # == Setup output data write to disk
 dump        dmp_vtk all vtk ${dumpfreq} ./vtk/Particles_*.vtp id type x y z vx vy vz fx fy fz
 dump_modify dmp_vtk pad 8 # ensures filenames file_000000.data
-fix extra all print 6 "Coords of marker atom = $(x) $(y) $(z)" file coord.txt
+
+dump out all yaml 100 dump.yaml id type x y z vx vy vz vx vy vz
 # == simulation time-stepping
 timestep 6
 
